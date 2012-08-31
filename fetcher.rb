@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 require 'rubygems'
 require 'mechanize'
 
@@ -15,7 +17,9 @@ class Fetcher
       status.inner_text =~ /(.+)From: kotoriko/
       text = $1
       p id
-      open(dir + id + '.txt', 'w').write(text)
+      open(dir + id + '.txt', 'w') do |f|
+        f.write(text)
+      end
     end
   end
 end

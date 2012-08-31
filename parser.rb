@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -Ku
+# -*- coding: utf-8 -*-
 
 require 'MeCab'
 
@@ -23,7 +23,7 @@ class Parser
 
   def parseFile(filename)
     parsed = []
-    open(filename).each do |line|
+    open(filename, :encoding => Encoding::UTF_8).lines.each do |line|
       parsed += parse(line)
     end
     parsed
@@ -40,7 +40,7 @@ class Parser
       if fs[0] != '助詞' and !['括弧始', '括弧終'].include?(fs[1]) and node.surface != ' ' and queue.size > 0
         parsed << flush(queue)
       end
-      queue << node.surface.gsub('　', ' ')
+      queue << node.surface.force_encoding('UTF-8').gsub('　', ' ')
       node = node.next
       print '.'
     end

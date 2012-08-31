@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class Indexer
   def initialize(depth)
     @depth = depth

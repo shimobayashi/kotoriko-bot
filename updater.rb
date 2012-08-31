@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 require_relative 'fetcher'
 require_relative 'parser'
 require_relative 'indexer'

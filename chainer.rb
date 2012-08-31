@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -Ku
+# -*- coding: utf-8 -*-
 
 class Array
   def choice
@@ -26,11 +26,11 @@ class Chainer
     end
   end
 
-  def chainWithScoring(sample = 5)
+  def chainWithScoring(sample = 20)
     tmp = []
     sample.times do
       res = chain
-      retry unless validate(res[:out])
+      redo unless validate(res[:out])
       tmp << res
     end
 
@@ -95,6 +95,12 @@ class Chainer
 end
 
 if __FILE__ == $0
-  c = Chainer.new(*ARGV)
+  dir = File.dirname(File.expand_path(__FILE__))
+  args = []
+  args << dir + '/tweets.index'
+  args << dir + '/tweets.start'
+  args << dir + '/tweets.score'
+  args << dir + '/tweets.posted'
+  c = Chainer.new(*args)
   puts c.addToPosted(c.chainWithScoring)
 end
