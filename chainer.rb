@@ -26,7 +26,7 @@ class Chainer
     end
   end
 
-  def chainWithScoring(sample = 20)
+  def chainWithScoring(sample = 10)
     tmp = []
     sample.times do
       res = chain
